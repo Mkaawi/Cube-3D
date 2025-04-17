@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 02:20:33 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 13:55:13 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:01:43 by amaaouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,8 @@ t_hit	cast_ray(t_m *data, double ray_angle)
 	if (hor_hit.distance < ver_hit.distance)
 	{
 		hor_hit.is_ver = false;
-		data->color = darken_color(WALL_COLOR, 0.9f);
 		return (hor_hit);
 	}
-	data->color = WALL_COLOR;
 	ver_hit.is_ver = true;
 	return (ver_hit);
 }

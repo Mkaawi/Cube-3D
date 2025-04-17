@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:46:50 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 23:23:01 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:21:55 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,15 @@ void	cpy_info(char *f, char *c, t_data *data)
 		data->cieling_color_arr = split_info3(c, data);
 		free(c);
 	}
+}
+
+void	check_split(t_data *data, char **split)
+{
+	if (split[2])
+	{
+		ft_free(split);
+		error2("map info error", data);
+	}
+	if (ft_strlen(split[0]) != 2)
+		error2("map info error3", data);
 }

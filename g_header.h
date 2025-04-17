@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:50:47 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/17 15:16:32 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:22:20 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,9 @@ char		**ft_split_first_space(const char *str);
 int			is_map_component(char *str);
 int			is_map_line(char *line);
 int			is_player(int c);
+int			count_doups(char **line, char *data);
+int			is_map_info(char *str);
+void		check_split_str(char **str, t_data *data);
+void		check_split(t_data *data, char **split);
 
 #endif

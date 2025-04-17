@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 11:02:50 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/17 22:18:58 by abdennac         ###   ########.fr       */
+/*   Created: 2025/04/17 22:21:10 by abdennac          #+#    #+#             */
+/*   Updated: 2025/04/17 22:21:59 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "g_header.h"
+#include "../g_header.h"
 
-int	main(int ac, char **av)
+void	check_split_str(char **str, t_data *data)
 {
-	t_data	*data;
+	int	i;
 
-	data = malloc(sizeof(t_data));
-	parse(data, ac, av);
-	raycasting_entry(data);
-	free_stuff(data);
+	i = -1;
+	while (str[1][++i])
+	{
+		if (!ft_isdigit(str[1][i]) && str[1][i] != ',')
+			error2("map info error", data);
+	}
+	if (!ft_strnstr(str[0], "F", 1) && !ft_strnstr(str[0], "C", 1))
+		error2("map info error2", data);
 }

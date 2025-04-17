@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:36:07 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/17 15:33:24 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:23:20 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_map_component(char *str)
 		return (1);
 	if (ft_strchr(str, 'S') || ft_strchr(str, 'E'))
 		return (1);
-	if (ft_strchr(str, 'N') || ft_strchr(str, 'W'))
+	if (ft_strchr(str, 'N') || ft_strchr(str, 'W') || ft_strchr(str, ' '))
 		return (1);
 	return (0);
 }
@@ -56,12 +56,11 @@ void	get_map_info(char **tmp, t_data *data, int i)
 	char	*c;
 	char	*f;
 
+	c = NULL;
+	f = NULL;
 	while (tmp[++i])
 	{
-		if (ft_strchr(tmp[i], '1') && !(ft_strnstr(tmp[i], "F ", 2)
-				|| ft_strnstr(tmp[i], "C ", 2) || ft_strnstr(tmp[i], "NO", 2)
-				|| ft_strnstr(tmp[i], "EA", 2) || ft_strnstr(tmp[i], "WE", 2)
-				|| ft_strnstr(tmp[i], "SO", 2)))
+		if (ft_strchr(tmp[i], '1') && !is_map_info(tmp[i]))
 			break ;
 		if (ft_strnstr(tmp[i], "NO", 2))
 			data->north_text = ft_strdup_no_newline(tmp[i]);
@@ -80,6 +79,23 @@ void	get_map_info(char **tmp, t_data *data, int i)
 	cpy_info(f, c, data);
 }
 
+int	precheck_info(char **tmp)
+{
+	if (count_doups(tmp, "NO") > 1)
+		return (1);
+	else if (count_doups(tmp, "SO") > 1)
+		return (1);
+	else if (count_doups(tmp, "WE") > 1)
+		return (1);
+	else if (count_doups(tmp, "EA") > 1)
+		return (1);
+	else if (count_doups(tmp, "F ") > 1)
+		return (1);
+	else if (count_doups(tmp, "C ") > 1)
+		return (1);
+	return (0);
+}
+
 void	fill_info(t_data *data, char *name, int i)
 {
 	char	**tmp;
@@ -94,7 +110,7 @@ void	fill_info(t_data *data, char *name, int i)
 		tmp[++i] = get_next_line(fd);
 	tmp[i] = NULL;
 	close(fd);
-	if (check_dub_map(tmp, 0) == 1)
+	if (check_dub_map(tmp, 0) == 1 || precheck_info(tmp) == 1)
 	{
 		ft_free(tmp);
 		error("map error");

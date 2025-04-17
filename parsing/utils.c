@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:27:59 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 20:46:11 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:07:12 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	get_map_line_count(char **tmp)
 	i = -1;
 	while (tmp[++i])
 	{
-		if ((ft_strchr(tmp[i], '1') && !(ft_strnstr(tmp[i], "F ", 2)
-					|| ft_strnstr(tmp[i], "C ", 2))) && !(ft_strnstr(tmp[i],
-					"NO", 2) || ft_strnstr(tmp[i], "SO", 2)
+		if (is_map_component(tmp[i]) && !((ft_strnstr(tmp[i], "F ", 2)
+					|| ft_strnstr(tmp[i], "C ", 2))) && (!(ft_strnstr(tmp[i],
+						"NO", 2)) || ft_strnstr(tmp[i], "SO", 2)
 				|| ft_strnstr(tmp[i], "WE", 2) || ft_strnstr(tmp[i], "EA", 2)
 				|| ft_strnstr(tmp[i], "F ", 2) || ft_strnstr(tmp[i], "C ", 2)))
 			map_line_count++;
@@ -62,8 +62,10 @@ int	get_map_line_count(char **tmp)
 
 void	getcf(t_data *data)
 {
-	data->cieling_color = rgb_to_hex(data->cieling_color_arr[0],
-			data->cieling_color_arr[1], data->cieling_color_arr[2]);
-	data->floor_color = rgb_to_hex(data->floor_color_arr[0],
-			data->floor_color_arr[1], data->floor_color_arr[2]);
+	if (data->cieling_color_arr)
+		data->cieling_color = rgb_to_hex(data->cieling_color_arr[0],
+				data->cieling_color_arr[1], data->cieling_color_arr[2]);
+	if (data->floor_color_arr)
+		data->floor_color = rgb_to_hex(data->floor_color_arr[0],
+				data->floor_color_arr[1], data->floor_color_arr[2]);
 }

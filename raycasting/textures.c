@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:45:48 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 15:04:58 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:17:44 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ void	paint_wall(t_m *data, t_texdata *tex_data, t_ray ray, t_wall wall)
 	{
 		tex_data->y_offset = (tex_data->y - wall.top)
 			* ((float)tex_data->tex->height / wall.height);
-		tex_data->pixel = &tex_data->tex->pixels
-		[4 * (tex_data->y_offset * tex_data->tex->width
-				+ tex_data->x_offset)];
+		tex_data->pixel = &tex_data->tex->pixels[4 * (tex_data->y_offset
+				* tex_data->tex->width + tex_data->x_offset)];
 		data->color = (tex_data->pixel[0] << 24)
 			| (tex_data->pixel[1] << 16)
 			| (tex_data->pixel[2] << 8)

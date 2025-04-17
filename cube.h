@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 02:27:59 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 15:00:05 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:02:45 by amaaouni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 # define ROTATION_SPEED 0.05
 # define MOV_SPEED 2
 # define NUM_RAYS WIDTH
-// # define CEILING_COLOR 0xFFFFFF
-// # define FLOOR_COLOR 0xFFFF00
-# define WALL_COLOR 0xC0C0C0FF
 
 typedef struct s_data	t_data;
 
@@ -141,7 +138,6 @@ void					render_walls(t_m *data, t_ray ray);
 bool					in_map(char **map, int y, int x);
 double					normalize_angle(double angle);
 bool					has_wall_at(char **map, double x, double y);
-uint32_t				darken_color(uint32_t color, float factor);
 double					calc_dis(double p_x, double p_y, double x, double y);
 int						raycasting_entry(t_data *pars_data);
 

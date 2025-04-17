@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:03:39 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/17 14:16:39 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:30:24 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,28 @@ int	is_map_line(char *line)
 				"F ", 2) || ft_strnstr(line, "C ", 2) || ft_strnstr(line, "NO",
 				2) || ft_strnstr(line, "EA", 2) || ft_strnstr(line, "WE", 2)
 			|| ft_strnstr(line, "SO", 2)));
+}
+
+int	count_doups(char **line, char *data)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = -1;
+	while (line[++i])
+	{
+		if (ft_strnstr(line[i], data, 2))
+			count++;
+	}
+	return (count);
+}
+
+int	is_map_info(char *str)
+{
+	if (ft_strnstr(str, "F ", 2) || ft_strnstr(str, "C ", 2) || ft_strnstr(str,
+			"NO", 2) || ft_strnstr(str, "EA", 2) || ft_strnstr(str, "WE", 2)
+		|| ft_strnstr(str, "SO", 2))
+		return (1);
+	return (0);
 }

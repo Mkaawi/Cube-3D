@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:47:22 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 21:04:00 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:19:16 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	*split_info3(char *str, t_data *data)
 	if (parse_ints2(str) != 0)
 		error2("ceiling/floor error", data);
 	split = ft_split_first_space(str);
+	check_split_str(split, data);
 	if (!split || !split[1])
 		error2("Invalid ceiling/floor format", data);
 	tmp = ft_split(split[1], ',');
@@ -73,6 +74,7 @@ void	split_info2(t_data *data)
 		free(data->west_text);
 		data->west_text = ft_strdup(split[1]);
 	}
+	check_split(data, split);
 	ft_free(split);
 	split = ft_split(data->east_text, ' ');
 	if (split && split[1])
@@ -80,6 +82,7 @@ void	split_info2(t_data *data)
 		free(data->east_text);
 		data->east_text = ft_strdup(split[1]);
 	}
+	check_split(data, split);
 	ft_free(split);
 }
 
@@ -93,6 +96,7 @@ void	split_info(t_data *data)
 		free(data->north_text);
 		data->north_text = ft_strdup(split[1]);
 	}
+	check_split(data, split);
 	ft_free(split);
 	split = ft_split(data->south_text, ' ');
 	if (split && split[1])
@@ -100,6 +104,7 @@ void	split_info(t_data *data)
 		free(data->south_text);
 		data->south_text = ft_strdup(split[1]);
 	}
+	check_split(data, split);
 	ft_free(split);
 	split_info2(data);
 }

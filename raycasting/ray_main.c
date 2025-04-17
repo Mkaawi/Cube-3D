@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:44:42 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 23:42:39 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 22:15:08 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	textures_init(t_m *data, t_data *pars_data)
 {
+	data->ceiling_color = pars_data->cieling_color;
+	data->floor_color = pars_data->floor_color;
 	data->texture.north = mlx_load_png(pars_data->north_text);
 	data->texture.south = mlx_load_png(pars_data->south_text);
 	data->texture.east = mlx_load_png(pars_data->east_text);
@@ -22,6 +24,18 @@ int	textures_init(t_m *data, t_data *pars_data)
 		|| !data->texture.west)
 		return (1);
 	return (0);
+}
+
+void	delete_textures(t_m data)
+{
+	if (data.texture.north)
+		mlx_delete_texture(data.texture.north);
+	if (data.texture.south)
+		mlx_delete_texture(data.texture.south);
+	if (data.texture.east)
+		mlx_delete_texture(data.texture.east);
+	if (data.texture.west)
+		mlx_delete_texture(data.texture.west);
 }
 
 int	raycasting_entry(t_data *pars_data)
@@ -38,17 +52,16 @@ int	raycasting_entry(t_data *pars_data)
 	if (mlx_image_to_window(data.mlx, data.image, 0, 0) == -1)
 		return (1);
 	if (textures_init(&data, pars_data))
+	{
+		mlx_terminate(data.mlx);
+		delete_textures(data);
 		return (1);
-	data.ceiling_color = pars_data->cieling_color;
-	data.floor_color = pars_data->floor_color;
+	}
 	player_init(&data);
 	shot_rays(&data);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	mlx_loop(data.mlx);
-	mlx_delete_texture(data.texture.north);
-	mlx_delete_texture(data.texture.south);
-	mlx_delete_texture(data.texture.east);
-	mlx_delete_texture(data.texture.west);
+	delete_textures(data);
 	mlx_terminate(data.mlx);
 	return (1);
 }
