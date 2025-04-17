@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:50:47 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 22:27:07 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:16:32 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_data
 void		parse(t_data *data, int ac, char **av);
 void		parse_map(t_data *data);
 void		fill_info(t_data *data, char *name, int i);
-int			check_dub_map(char **arr, int i, int is_map);
+int			check_dub_map(char **arr, int i);
 int			get_map_line_count(char **tmp);
 void		cpy_info(char *F, char *C, t_data *data);
 int			info_check(t_data *data);
@@ -60,5 +60,7 @@ void		getcf(t_data *data);
 void		print_map(char **map);
 char		**ft_split_first_space(const char *str);
 int			is_map_component(char *str);
+int			is_map_line(char *line);
+int			is_player(int c);
 
 #endif

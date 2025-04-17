@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:03:39 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 22:32:49 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 14:16:39 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ char	**ft_split_first_space(const char *str)
 		result[1] = NULL;
 	result[2] = NULL;
 	return (result);
+}
+
+int	is_map_line(char *line)
+{
+	return ((ft_strchr(line, '1') || ft_strchr(line, '0')) && !(ft_strnstr(line,
+				"F ", 2) || ft_strnstr(line, "C ", 2) || ft_strnstr(line, "NO",
+				2) || ft_strnstr(line, "EA", 2) || ft_strnstr(line, "WE", 2)
+			|| ft_strnstr(line, "SO", 2)));
 }

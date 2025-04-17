@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 19:36:07 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 23:34:29 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:33:24 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill_info(t_data *data, char *name, int i)
 		tmp[++i] = get_next_line(fd);
 	tmp[i] = NULL;
 	close(fd);
-	if (check_dub_map(tmp, 0, 0) == 1)
+	if (check_dub_map(tmp, 0) == 1)
 	{
 		ft_free(tmp);
 		error("map error");

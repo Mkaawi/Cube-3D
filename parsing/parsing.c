@@ -6,11 +6,20 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:32:18 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 22:27:13 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:20:42 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../g_header.h"
+
+int	is_player(int c)
+{
+	if (c == 'S' || c == 'E')
+		return (1);
+	if (c == 'N' || c == 'W')
+		return (1);
+	return (0);
+}
 
 int	info_check(t_data *data)
 {

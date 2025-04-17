@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 01:27:59 by abdennac          #+#    #+#             */
-/*   Updated: 2025/04/16 22:22:57 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:37:31 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,30 @@ int	dub_check(char *arr)
 	return (0);
 }
 
-int	check_dub_map(char **arr, int i, int is_map)
+int	check_dub_map(char **arr, int i)
 {
+	int	map_started;
+	int	map_ended;
+
+	map_started = 0;
+	map_ended = 0;
 	while (arr[i])
 	{
 		if (dub_check(arr[i]) == 1)
 		{
+			if (map_started)
+				map_ended = 1;
 			i++;
 			continue ;
 		}
-		if ((ft_strchr(arr[i], '1') || ft_strchr(arr[i], '0'))
-			&& !(ft_strnstr(arr[i], "F ", 2) || ft_strnstr(arr[i], "C ", 2)
-				|| ft_strnstr(arr[i], "NO", 2) || ft_strnstr(arr[i], "EA", 2)
-				|| ft_strnstr(arr[i], "WE", 2) || ft_strnstr(arr[i], "SO", 2)))
+		if (is_map_line(arr[i]))
 		{
-			if (is_map)
+			if (map_ended)
 				return (1);
-			is_map = 1;
-			while (arr[i] && ft_strchr(arr[i], '1') && !(ft_strnstr(arr[i],
-						"F ", 2) || ft_strnstr(arr[i], "C ", 2)))
-				i++;
+			map_started = 1;
 		}
-		else if (is_map)
-			return (1);
+		else if (map_started)
+			map_ended = 1;
 		i++;
 	}
 	return (0);
@@ -64,10 +65,7 @@ int	check_player(char **map)
 		{
 			if (map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'
 				|| map[i][j] == 'N')
-			{
-				map[i][j] = 'N';
 				count++;
-			}
 		}
 	}
 	if (count != 1)
@@ -86,15 +84,15 @@ int	check_map_borders(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' || map[i][j] == 'N')
+			if (map[i][j] == '0' || is_player(map[i][j]))
 			{
 				if (i == 0 || !map[i + 1] || j == 0 || map[i][j + 1] == '\0'
-					|| (map[i - 1][j] != '0' && map[i - 1][j] != '1' && map[i
-						- 1][j] != 'N') || (map[i + 1][j] != '0' && map[i
-						+ 1][j] != '1' && map[i + 1][j] != 'N') || (map[i][j
-						- 1] != '0' && map[i][j - 1] != '1' && map[i][j
-						- 1] != 'N') || (map[i][j + 1] != '0' && map[i][j
-						+ 1] != '1' && map[i][j + 1] != 'N'))
+					|| (map[i - 1][j] != '0' && map[i - 1][j] != '1'
+						&& !is_player(map[i - 1][j])) || (map[i + 1][j] != '0'
+						&& map[i + 1][j] != '1' && !is_player(map[i + 1][j]))
+					|| (map[i][j - 1] != '0' && map[i][j - 1] != '1'
+						&& !is_player(map[i][j - 1])) || (map[i][j + 1] != '0'
+						&& map[i][j + 1] != '1' && !is_player(map[i][j + 1])))
 					return (1);
 			}
 			j++;

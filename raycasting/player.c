@@ -6,7 +6,7 @@
 /*   By: abdennac <abdennac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 14:45:34 by amaaouni          #+#    #+#             */
-/*   Updated: 2025/04/16 13:55:17 by abdennac         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:19:15 by abdennac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	player_init(t_m *data)
 		{
 			if (data->map[iter.i][iter.j] != '1'
 				&& data->map[iter.i][iter.j] != '0'
-				&& data->map[iter.i][iter.j] != '\n')
+				&& data->map[iter.i][iter.j] != '\n'
+				&& data->map[iter.i][iter.j] != ' ')
 			{
 				player_pos(data, iter);
 				return ;
